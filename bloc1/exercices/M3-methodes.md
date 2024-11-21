@@ -1,0 +1,123 @@
+# Exercices M3 - Méthodes
+
+## Exercice 1 - Quelle est la sortie ?
+
+Déterminez la sortie du programme suivant, sans lancer le programme sur machine.
+
+Vous noterez sur un papier chaque variable définie et suivrez sa valeur pendant le cours du programme, pour savoir à tout moment ce qu'elle vaut si elle est affichée. Lorsque vous sautez dans une méthode paramétrée, notez bien la valeur de chaque paramètre passé : ce sont ces valeurs que va utiliser la méthode pour cet appel.
+
+On rappelle que l'opérateur modulo (`%`) donne le reste de la division entière entre deux nombres. Par exemple, `18 % 4` vaut 2 car `18 / 4 = 4` et il reste `2`. Le test `n % 4 == 0` indique donc si n est divisible par 4 (car alors le reste de la division est 0).
+
+```java
+public class QuelleEstLaSortie {
+  public static void afficherNombres(int a, int b, int c, int d, int e) {
+    afficherNombre(a);
+    afficherNombre(b);
+    afficherNombre(c);
+    afficherNombre(d);
+    afficherNombre(e);
+    System.out.println();
+  }
+
+  public static void afficherNombre(int nb) {
+    if (nb % 4 == 0) {
+      System.out.print(nb + " ");
+    } else if (nb > 8) {
+      System.out.print("grand ");
+    } else {
+      System.out.print("petit ");
+    }
+  }
+
+  public static void main(String[] args) {
+    int a = 2;
+    int b = 4;
+    int c = 6;
+    int d = 8;
+    int e = 10;
+
+    int limite = 5;
+
+    afficherNombres(a, b, c, d, e);
+    verifierLimite(a, limite);
+    verifierLimite(b, limite);
+    verifierLimite(c, limite);
+    verifierLimite(d, limite);
+    verifierLimite(e, limite);
+    afficherPattern(3);
+  }
+
+  public static void verifierLimite(int nb, int limite) {
+    if (nb > limite) {
+      System.out.println(nb + " est plus grand que " + limite);
+    }
+  }
+
+  public static void afficherPattern(int n) {
+    int i = 0;
+    while (i < n) {
+      for (int j = 0; j <= i; j++) {
+        System.out.print("*");
+      }
+      System.out.println();
+      i++;
+    }
+  }
+}
+```
+
+## Exercice 2 - Simulation de combat RPG
+
+L'objectif de cet exercice est d'élaborer progressivement un programme de simulation de combat entre deux personnages de RPG.
+
+### 2.1 - Définition et appel d'une méthode simple
+
+Définissez une méthode qui affiche un message d'accueil : « Bienvenue ! ». Appelez cette méthode dans la méthode `main` et testez votre programme.
+
+### 2.2 - Méthode avec paramètre
+
+Définissez une méthode qui affiche le nom d'un gladiateur passé en paramètre. Appelez cette méthode dans la méthode `main` (à la suite de la précédente) avec un nom de votre choix.
+
+### 2.3 - Caractéristiques d'un combattant
+
+Définissez une méthode qui affiche les caractéristiques d'un combattant. Ces caractéristiques sont les suivantes :
+
+- nom
+- force
+- agilité
+- points de vie
+
+Vous définirez vous-mêmes les valeurs pour ces caractéristiques. Appelez la méthode dans la méthode `main` pour la tester.
+
+### 2.4 - Dommages aléatoires
+
+Définissez une méthode qui renvoie un dommage infligé par un combattant à un autre combattant. Pour l'instant, le score est calculé comme ceci : un nombre aléatoire entre 50 et 100. Testez votre méthode en affichant le dommage infligé.
+
+### 2.5 - Dommages prenant en compte les combattants
+
+Définissez une méthode qui renvoie les dommages infligés par un combattant à un autre combattant. Cette fois, la méthode va prendre en compte les caractéristiques du combattant :
+
+- utiliser la force du combattant pour calculer une base de dommages (la moitié de la force)
+- utiliser l'agilité du combattant pour déterminer des dommages supplémentaires (un entier aléatoire entre 0 et l'agilité du combattant)
+
+### 2.6 - Dommages restreints par l'agilité de l'adversaire
+
+Vous définirez maintenant deux combattants dans la méthode `main`, avec des caractéristiques différentes mais équilibrées. Puis vous modifierez la méthode précédente en prenant en compte l'agilité de l'adversaire :
+
+- utiliser l'agilité de l'adversaire pour déterminer une réduction des dommages (un entier aléatoire entre 0 et l'agilité de l'adversaire)
+
+### 2.7 - Combat complet
+
+Simulez un combat entre deux combattants jusqu'à ce que l'un des deux meurt. Vous définirez pour cela une méthode dédiée qui va elle-même utiliser la méthode définie précédemment. Vous afficherez des détails sur chacun des tours du combat et indiquerez qui a gagné à la fin.
+
+### 2.8 - Bug ?
+
+Votre programme prend-il bien en compte le fait que, lors d'un tour de combat, un combattant qui vient de mourir ne peut plus infliger de dommage à son adversaire dans le même tour ? Sinon, corrigez le bug.
+
+### 2.9 - Qui commence ?
+
+Actuellement, c'est sûrement le premier combattant défini qui commence toujours à frapper le premier dans votre programme. Ajoutez une fonctionnalité permettant de déterminer qui commence en fonction des caractéristiques des combattants et, éventuellement, d'un caractère aléatoire.
+
+### 2.10 - Évolutions ?
+
+Quelles évolutions pourriez-vous apporter à cette simulation ? Des armes offensives/défensives ? Des sorts ? Des décisions prises en cours de combats par interaction avec les utilisateurs ? Analysez la façon dont cela pourrait être implémenté et essayez d'incorporer vos idées à votre programme.
