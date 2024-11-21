@@ -23,9 +23,9 @@ public class QuelleEstLaSortie {
     if (nb % 4 == 0) {
       System.out.print(nb + " ");
     } else if (nb > 8) {
-      System.out.print("grand ");
+      System.out.print("orange ");
     } else {
-      System.out.print("petit ");
+      System.out.print("citron ");
     }
   }
 
@@ -35,7 +35,6 @@ public class QuelleEstLaSortie {
     int c = 6;
     int d = 8;
     int e = 10;
-
     int limite = 5;
 
     afficherNombres(a, b, c, d, e);
@@ -49,7 +48,7 @@ public class QuelleEstLaSortie {
 
   public static void verifierLimite(int nb, int limite) {
     if (nb > limite) {
-      System.out.println(nb + " est plus grand que " + limite);
+      System.out.println(nb + "," + limite);
     }
   }
 
