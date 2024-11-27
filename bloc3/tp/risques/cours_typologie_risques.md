@@ -2,22 +2,28 @@
 
 ### Retour sur les vulnérabilités, les menaces et les risques
 
-- **Vulnérabilité** : faille, faiblesse de cybersécurité du SI qui peut affecter son fonctionnement normal => **V**
-- **Menace** : cause intentionnelle (dans le cadre de la cybersécurité) ou non-intentionnelle (dans le cadre de la sécurité) qui peut entraîner des dommages sur le SI => **M**
-- **Probabilité d'exploitation** : probabilité de l'exploitation d'une **vulnérabilité** par une **menace** => **Proba = V x M**
-- **Impact** : gravité de l'exploitation pour l'organisation => **I**
-- On peut alors retenir cette définition du risque :
-  - l'estimation du risque en fonction de sa **probabilité** et de son **impact** => **Risque = Proba x I**
+- **Vulnérabilité** : faille, faiblesse de cybersécurité du SI qui peut affecter son fonctionnement normal. On la note **V**.
+- **Menace** : cause intentionnelle (dans le cadre de la cybersécurité) ou non-intentionnelle (dans le cadre de la sécurité) qui peut entraîner des dommages sur le SI. On la note **M**.
+- **Probabilité d'exploitation** : probabilité de l'exploitation d'une **vulnérabilité** par une **menace**. On la note **P**. **Une probabilité d'exploitation est fonction d'une Vulnérabilité et d'une Meance correspondante** => **P = V x M**.
+- **Impact** : gravité de l'exploitation pour l'organisation. On le note **I**.
+- On peut alors retenir cette définition du risque : **Le risque est l'estimation de la probabilité d'exploitation d'une vulnérabilité par une menace et de son impact** => **Risque = P x I**.
+- En résumé, chaque fois qu'on a une *vulnérabilité*, une *menace* associée et que la concrétisation de cette menace a un *impact* sur l'organisation, on a un *risque*.
+- On va donc :
+  - identifier et mesurer les vulnérabilités
+  - identifier et mesurer les menaces associées
+  - pour chaque association vulnérabilité/menace, calculer la probabilité que ça arrive effectivement (P=VxM)
+  - maintenant on suppose que ça arrive, et on évalue l'impact I (mesure de la gravité)
+  - finalement, on calcule le risque correspondant (R=PxI=VxMxI)
 
 ### La méthode EBIOS
 
-La méthode EBIOS Risk Manager (Expression des Besoins et Identification des Objectifs de Sécurité) développée par l'ANSSI et retenue par la CNIL permet d'identifier et de hiérarchiser les différents risques dans un contexte clairement défini.
+La méthode _EBIOS Risk Manager_ (Expression des Besoins et Identification des Objectifs de Sécurité) développée par l'ANSSI et retenue par la CNIL permet d'identifier et de hiérarchiser les différents risques dans un contexte clairement défini.
 
 Un risque est défini par l'ANSSI comme « un scénario qui combine un événement redouté et un ou plusieurs scénarios de menaces ». Un événement redouté désigne par exemple la possibilité d'atteindre des données avec des conséquences probables sur la vie privée des personnes concernées.
 
-### L'évaluation des risques et cartographie
+### Évaluation des risques et cartographie
 
-L'évaluation du niveau d'un risque est réalisée par le croisement de son niveau de vraisemblance et de sa gravité, et permet ensuite de réaliser une **cartographie des risques** dont voici une illustration :
+L'évaluation du niveau d'un risque est réalisée par le croisement de son niveau de vraisemblance (probabilité) et de sa gravité (impact), et permet ensuite de réaliser une **cartographie des risques** dont voici une illustration :
 
 ![cartographie_des_risques](imgs/23_cartographie_risques.png)
 
