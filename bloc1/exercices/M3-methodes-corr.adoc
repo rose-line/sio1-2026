@@ -1,0 +1,528 @@
+= Exercices M3 - Méthodes
+
+== Préambule
+
+Cette série d'exercices vise à vous faire pratiquer la définition et l'appel de méthodes. Lorsque l'on doit définir une méthode (c'est-à-dire un bout de code qui résoud un sous-problème bien distinct), on se pose d'abord les trois questions suivantes :
+
+=== 1. Comment je nomme cette méthode ?
+
+Le nom de la méthode doit indiquer clairement ce qu'elle fait. En général, on commence par un verbe, suivi éventuellement d'un complément : `afficherBienvenue`, `afficherCaracteristiquesCombattant`, `calculerDommages`... On se pose tout simplement la question : « que fait cette méthode ? », on répond synthétiquement en un ou plusieurs mots, et on en fait le nom de la méthode.
+
+=== 2. Quels sont les paramètres de la méthode ?
+
+Les *paramètres* constituent ce dont la méthode a besoin pour faire son travail. C'est pour cela qu'on appelle aussi ça des *entrées* ou *paramètres d'entrée*. Parfois, la méthode ne prend pas de paramètres : elle n'a pas besoin que l'appelant lui fournisse quoi que ce soit pour effectuer son travail. Parfois, la méthode a au contraire besoin d'un ou plusieurs paramètres : ce sont les variables pour lesquelles le développeur de la méthode ne peut pas prévoir à l'avance les valeurs, mais qui sont nécessaires pour que la méthode fasse son travail. Par exemple, pour enregistrer un nouveau client dans une base de données, on a besoin de son nom, prénom, adresse, etc.
+
+Au niveau syntaxe :
+
+* les paramètres se placent entre les parenthèses qui suivent le nom de la méthode ;
+* chaque paramètre est composé de son type et de son nom, séparés par un espace ;
+* le nom est choisi par le développeur. Comme pour le nom de la méthode, on choisit un nom cohérent, qui reflète ce qu'est ce paramètre. Le nom n'a pas à être le même que celui utilisé pour la variable passée en paramètre lors de l'appel.
+* si la méthode a plusieurs paramètres, ceux-ci sont séparés par des virgules.
+
+=== 3. Quel est le type de retour de la méthode ?
+
+Le *type de retour* est le type de la variable que la méthode renvoie à l'appelant. Parfois, la méthode ne renvoie rien : elle fait son travail et c'est tout. Parfois, la méthode renvoie une valeur, qui peut être de n'importe quel type (entier, chaîne de caractères, etc.). Par exemple, pour une méthode enregistre un nouveau client dans une base de données, on peut imaginer qu'elle renvoie un booléen pour indiquer si l'opération a réussi (`true`) ou non (`false`).
+
+Au niveau syntaxe :
+
+* *le type de retour se place avant le nom de la méthode*, séparé par un espace ;
+* si la méthode ne renvoie rien, on utilise le *mot-clé `void`* pour le spécifier ;
+* si la méthode renvoie une valeur, *on est obligé de faire un `return`* dans le code pour spécifier la valeur renvoyée ;
+* si la méthode renvoie une valeur, *l'appelant doit récupérer cette valeur* dans une variable lors de l'appel de la méthode.
+
+=== Exemple - Définition d'une méthode pour enregistrer un client
+
+Illustrons les trois concepts en même temps avec notre méthode qui enregistre un nouveau client dans une base de données :
+
+1. _Nom de la méthode_ : `enregistrer`, `enregistrerClient`, `enregistrerEnBDD`, `enregistrerClientEnBDD`... Le niveau de détails du nom dépend du contexte dans lequel est définie la méthode.
+2. _Paramètres_ : on peut imaginer que la méthode prend en paramètres le _nom_, le _prénom_ et l'_adresse_ du client à enregistrer. La méthode ne peut pas « deviner » les informations du client à enregistrer : elle a _besoin_ que l'appelant lui fournisse en entrée. Ce sont donc des paramètres.
+3. _Type de retour_ : on peut imaginer que la méthode renvoie un _booléen_ pour indiquer si l'opération a réussi (`true`) ou non (`false`). C'est une *sortie* de la méthode. La valeur renvoyée va être récupérée par l'appelant qui va l'utiliser si besoin. Par exemple, ici, on pourrait imaginer que l'appelant affiche un message d'erreur si l'enregistrement a échoué.
+
+Comme on a des paramètres, on n'oublie pas de les *spécifier* entre parenthèses dans la définition de la méthode, avec le *type* et le *nom* pour chaque paramètre. On n'oublie pas non plus de *fournir les valeurs* entre parenthèses lors de l'appel de la méthode.
+
+Comme on a une valeur de retour, on n'oublie pas de *spécifier le type de retour* à la place de `void`, de faire un *`return`* dans le code pour renvoyer la valeur, et de *récupérer la valeur renvoyée* dans une variable lors de l'appel de la méthode.
+
+Voici ce que ça donne en Java, avec une méthode `main` qui appelle la méthode `enregistrerClient` :
+
+[source,java]
+----
+public class Main {
+  public static void main(String[] args) {
+    // Définition des variables pour les informations du client.
+    // On fournit ici ces données "en dur", en pratique elles pourraient
+    // être fournies par l'utilisateur via une interface graphique, par exemple.
+    String nom = "Dupont";
+    String prenom = "Jean";
+    String adresse = "1 rue de la Paix, Paris";
+    // Appel de la méthode, 3 paramètres fournis, récupération de la valeur de retour
+    boolean enregistrementReussi = enregistrerClient(nom, prenom, adresse);
+    // Utilisation de la valeur de retour pour afficher un message
+    if (enregistrementReussi) {
+      System.out.println("Enregistrement réussi !");
+    } else {
+      System.out.println("Échec de l'enregistrement.");
+    }
+  }
+
+  // Définition de la méthode enregistrerClient()
+  // 3 paramètres, tous de type String
+  // type de retour : booléen (true si l'enregistrement a réussi, false sinon)
+  public static boolean enregistrerClient(String nom, String prenom, String adresse) {
+    // Code pour enregistrer le client dans la base de données.
+    // Ce code crée une requête SQL INSERT, l'exécute sur le serveur de base de données MySQL,
+    // et récupère le résultat de l'opération dans une variable booléenne nommé insertionOK.
+    // ...CODE NON FOURNI...
+    return insertionOK;  // on renvoie le résultat de l'opération pour que l'appelant puisse l'utiliser
+  }
+}
+----
+
+== Exercice 1 - Quelle est la sortie ?
+
+Rappels sur le flux d'exécution d'un programme Java :
+
+* Le programme *commence toujours* à la première ligne de la *méthode `main`*.
+* Les *instructions* sont exécutées *les unes après les autres*, de haut en bas.
+* Si on a une instruction conditionnelle (`if`, `if-else`, `if-else if-else`...), on suit les *règles du branchement conditionnel* : un { bloc } va être exécuté au plus.
+* Si on a une *boucle* (`while`, `for`...), on suit les *règles de la répétition* : le bloc de la boucle va être exécuté éventuellement plusieurs fois en fonction de la condition (pour un `while`) ou du nombre d'itérations spécifié (pour un `for`).
+* Si on a un *appel de méthode*, *on saute* dans la méthode appelée (*en passant les paramètres* s'il y en a), on exécute son code, puis on revient à l'appelant (*en récupérant la valeur de retour* s'il y en a) pour continuer l'exécution.
+* La *fin du programme* est atteinte quand on arrive à la *fin de la méthode `main`*.
+* Considérant tout cela, il ressort qu'*une méthode définie mais non appelée ne sera pas exécutée*.
+
+Voici la sortie du programme donné :
+
+[source]
+----
+citron 4 citron 8 orange
+6,5
+8,5
+10,5
+*
+**
+***
+----
+
+== Exercice 2 - Simulation de combat RPG
+
+=== 2.1 - Définition et appel d'une méthode simple
+
+Les trois questions :
+
+1. Le nom `afficherBienvenue` est clair, pas trop long, et utilise un verbe.
+2. La méthode ne prend pas de paramètre : elle n'a besoin d'aucune info supplémentaire pour afficher le message d'accueil.
+3. Bien que la méthode produise effectivement quelque chose (afficher un message), l'appelant n'a pas besoin de récupérer une valeur particulière. On peut donc laisser le type de retour à `void`.
+
+[source,java]
+----
+public class RpgSimulation {
+  public static void main(String[] args) {
+    afficherBienvenue();  // appel de la méthode
+  }
+
+  // Définition de la méthode afficherBienvenue()
+  public static void afficherBienvenue() {
+    System.out.println("Bienvenue !");
+  }
+}
+----
+
+=== 2.2 - Méthode avec paramètre
+
+Les trois questions :
+
+1. Nom : `afficherNomCombattant`
+2. Paramètres : cette fois on a besoin de passer un paramètre à la méthode, qui correspond au nom du combattant que l'on doit afficher. Le paramètre est donné entre parenthèses, juste après le nom de la méthode définie. On doit préciser son type (`String`) et son nom (`nom`). Grâce au paramètre, on peut appeler la méthode pour afficher le nom de n'importe quel combattant.
+3. Type de retour : `void`, car la méthode ne renvoie rien. Elle se contente de faire un affichage.
+
+[source,java]
+----
+public class RpgSimulation {
+  public static void main(String[] args) {
+    afficherBienvenue();
+    afficherNomCombattant("Gandalf");  // appel avec une string "en dur"
+    String nomCombattant = "Aragorn";
+    afficherNomCombattant(nomCombattant);  // appel avec une variable définie auparavant
+  }
+
+  // Définition de la méthode afficherBienvenue()
+  public static void afficherBienvenue() {
+    System.out.println("Bienvenue !");
+  }
+
+  // Définition de la méthode afficherNomCombattant()
+  public static void afficherNomCombattant(String nom) {
+    System.out.println("Nom du combattant : " + nom);
+  }
+}
+----
+
+Pour info, voici la sortie :
+
+[source]
+----
+Bienvenue !
+Nom du combattant : Gandalf
+Nom du combattant : Aragorn
+----
+
+Ici on fait deux appels à la méthode `afficherNomCombattant` :
+
+* une fois avec une *valeur littérale* : c'est ainsi qu'on appelle une valeur écrite directement dans le code (`"toto"`, `42`, `true`...) ;
+* une fois avec une variable : celle-ci doit évidemment être du type attendu par la méthode (ici `String`).
+
+De manière générale, on peut avoir besoin des deux façons de faire, selon le contexte. Notez que la définition de la méthode s'en fiche : elle prend de toute façon une `String` en paramètre, et peu importe comment l'appelant a obtenu cette `String`.
+
+=== 2.3 - Caractéristiques d'un combattant
+
+Les trois questions :
+
+1. Nom : `afficherCaracteristiquesCombattant`
+2. Paramètres : il s'agit du même principe que la méthode précédente. Simplement, plus d'informations externes sont à prendre en compte par la méthode, donc elle a besoin de plus de paramètres : le nom, la force, l'agilité et les points de vie du combattant.
+3. Type de retour : `void`, car la méthode ne renvoie rien. Elle se contente de faire des affichages.
+
+[source,java]
+----
+public class RpgSimulation {
+  public static void main(String[] args) {
+    // 3 appels à 3 méthodes différentes
+    afficherBienvenue();
+    afficherCaracteristiquesCombattant("Gandalf", 10, 3, 100);
+  }
+
+  // Définition de la méthode afficherBienvenue()
+  public static void afficherBienvenue() {
+    System.out.println("Bienvenue !");
+  }
+
+  // Définition de la méthode afficherNomCombattant()
+  // Notez que cette méthode n'est pas utilisée dans cette version du programme (non appelée)
+  public static void afficherNomCombattant(String nom) {
+    System.out.println("Nom du combattant : " + nom);
+  }
+
+  // Définition de la méthode afficherCaracteristiquesCombattant()
+  public static void afficherCaracteristiquesCombattant(String nom, int force, int agilite, int pointsDeVie) {
+    System.out.println("*** CARACTÉRISTIQUES ***");
+    System.out.println("Nom : " + nom);
+    System.out.println("Force : " + force);
+    System.out.println("Agilité : " + agilite);
+    System.out.println("Points de vie : " + pointsDeVie);
+    System.out.println("************************");
+  }
+}
+----
+
+Voici la sortie :
+
+[source]
+----
+Bienvenue !
+*** CARACTÉRISTIQUES ***
+Nom : Gandalf
+Force : 10
+Agilité : 5
+Points de vie : 100
+************************
+----
+
+On a ici utilisé des valeurs littérales pour l'appel. Ça va très bien pour tester mais, par la suite, il sera plus utile de conserver toutes les caractéristiques dans des variables, pour pouvoir les manipuler (modification, comparaison, etc.), notamment lorsqu'il y aura plusieurs combattants.
+
+=== 2.4 - Dommages aléatoires
+
+Les trois questions :
+
+1. Nom : `calculerDommages`
+2. Paramètres : aucun. La méthode n'a pas besoin d'aide de l'appelant pour faire son travail. Comme il s'agit d'un calcul aléatoire, elle n'a notamment pas besoin des caractéristiques d'un ou plusieurs combattants. Elle a besoin d'un objet `Random` pour générer des nombres aléatoires, c'est vrai, mais elle peut se le créer elle-même.
+3. Type de retour : la méthode doit communiquer à l'appelant les dommages qu'elle a calculés. C'est une _sortie_. Il nous faut donc renvoyer (`return`) une valeur de retour. Son type est entier (la valeur des dommages). On doit donc spécifier `int` comme type de retour. On ne doit pas oublier de faire le `return`, et de récupérer la valeur `int` renvoyée dans une variable lors de l'appel de la méthode.
+
+[source,java]
+----
+import java.util.Random;
+
+public class RpgSimulation {
+  public static void main(String[] args) {
+    String nom = "Gandalf";
+    int force = 10;
+    int agilite = 3;
+    int pointsDeVie = 500;
+    afficherBienvenue();
+    afficherCaracteristiquesCombattant(nom, force, agilite, pointsDeVie);
+    // Appel de la méthode calculerDommages() et récupération de la valeur de retour
+    int dommages = calculerDommages();
+    // Utilisation de la valeur de retour pour afficher les dommages
+    // et enlever des points de vie au combattant touché
+    System.out.println("Test dommages infligés : " + dommage);
+    pointsDeVie = pointsDeVie - dommages;
+  }
+
+  public static void afficherBienvenue() {
+    System.out.println("Bienvenue !");
+  }
+
+  public static void afficherCaracteristiquesCombattant(String nom, int force, int agilite, int pointsDeVie) {
+    System.out.println("*** CARACTÉRISTIQUES ***");
+    System.out.println("Nom : " + nom);
+    System.out.println("Force : " + force);
+    System.out.println("Agilité : " + agilite);
+    System.out.println("Points de vie : " + pointsDeVie);
+    System.out.println("************************");
+  }
+
+  // Définition de la méthode calculerDommages()
+  // Pas de paramètres, mais un entier en sortie (dommages calculés)
+  public static int calculerDommages() {
+    Random random = new Random();
+    int dommages = random.nextInt(51) + 50;  // un nombre aléatoire entre 50 et 100
+    return dommages;  // on renvoie le résultat du calcul pour que l'appelant puisse l'utiliser
+  }
+}
+----
+
+Voici un exemple de sortie :
+
+[source]
+----
+Bienvenue !
+*** CARACTÉRISTIQUES ***
+Nom : Gandalf
+Force : 10
+Agilité : 5
+Points de vie : 100
+************************
+Test dommages infligés : 73
+----
+
+On a utilisé la classe `Random` pour générer un nombre aléatoire. L'appel à `nextInt(51)` donne un entier aléatoire entre `0` et `50`. Puis on ajoute `50` pour finalement avoir un nombre entre `50` et `100`.
+
+=== 2.5 - Dommages prenant en compte les combattants
+
+Les trois questions :
+
+1. Nom : `calculerDommages` (on va remplacer la méthode précédente, on a ici une version évoluée).
+2. Paramètres : la méthode doit prendre en paramètres la force et l'agilité du combattant attaquant. Ces paramètres sont nécessaires pour le calcul des dommages. On ne sait pas à l'avance quelles seront les valeurs de ces caractéristiques, donc on doit les passer en paramètres. On doit préciser leur type (`int`) et leur nom (`force` et `agilite`). On ne doit pas oublier de passer des valeurs pour ces paramètres lors de l'appel de la méthode.
+3. Type de retour : comme pour la version précédente, on renvoie les dommages calculés (`int`).
+
+[source,java]
+----
+public class RpgSimulation {
+  public static void main(String[] args) {
+    String nom = "Gandalf";
+    int force = 10;
+    int agilite = 3;
+    int pointsDeVie = 500;
+    afficherBienvenue();
+    afficherCaracteristiquesCombattant(nom, force, agilite, pointsDeVie);
+    // Appel de la méthode calculerDommages() et récupération de la valeur de retour
+    int dommages = calculerDommages(force, agilite);
+    // Utilisation de la valeur de retour pour afficher les dommages
+    System.out.println("Test dommages infligés : " + dommages);
+  }
+
+  public static void afficherBienvenue() {
+    System.out.println("Bienvenue !");
+  }
+
+  public static void afficherCaracteristiquesCombattant(String nom, int force, int agilite, int pointsDeVie) {
+    System.out.println("*** CARACTÉRISTIQUES ***");
+    System.out.println("Nom : " + nom);
+    System.out.println("Force : " + force);
+    System.out.println("Agilité : " + agilite);
+    System.out.println("Points de vie : " + pointsDeVie);
+    System.out.println("************************");
+  }
+
+  // Définition de la méthode calculerDommages()
+  // Prend en paramètres la force et l'agilité du combattant attaquant
+  // Renvoie un entier (dommages calculés)
+  public static int calculerDommages(int force, int agilite) {
+    Random random = new Random();
+    int dommagesForce = force / 2;
+    int dommagesAgilite = random.nextInt(agilite + 1);
+    int dommagesTotaux = dommagesForce + dommagesAgilite;
+    return dommagesTotaux;
+  }
+}
+----
+
+=== 2.6 - Dommages restreints par l'agilité de l'adversaire
+
+Les trois questions :
+
+1. Nom : `calculerDommages` (évolution).
+2. Paramètres : on ajoute un paramètre pour l'agilité du combattant défenseur (`int`). Pour bien distinguer les caractéristiques nécessaires des deux protagonistes, on se permet d'être un peu plus explicite dans les noms des paramètres : `forceAttaquant`, `agiliteAttaquant`, `agiliteDefenseur`. N'oubliez pas que c'est vous qui choisissez les noms !
+3. Type de retour : `int`, représentant toujours les dommages infligés. La méthode de calcul change, le type de retour reste le même.
+
+Pour tester notre méthode dans `main`, on va simuler deux combattants. 1 va attaquer 2, et on va calculer les dommages infligés. On va afficher les dommages, puis les enlever aux points de vie du combattant touché.
+
+[source,java]
+----
+public class RpgSimulation {
+  public static void main(String[] args) {
+    String nom1 = "Gandalf";
+    int force1 = 10;
+    int agilite1 = 3;
+    int pointsDeVie1 = 100;
+    String nom2 = "Aragorn";
+    int force2 = 8;
+    int agilite2 = 4;
+    int pointsDeVie2 = 110;
+    afficherBienvenue();
+    afficherCaracteristiquesCombattant(nom1, force1, agilite1, pointsDeVie1);
+    afficherCaracteristiquesCombattant(nom2, force2, agilite2, pointsDeVie2);
+    // Appel de la méthode calculerDommages() et récupération de la valeur de retour
+    int dommages = calculerDommages(force1, agilite1, agilite2);
+    // Utilisation de la valeur de retour pour afficher les dommages
+    // et enlever des points de vie au combattant touché
+    System.out.println("Test dommages infligés : " + dommages);
+    pointsDeVie2 = pointsDeVie2 - dommages;
+  }
+
+  public static void afficherBienvenue() {
+    System.out.println("Bienvenue !");
+  }
+
+  // Notez ici que le nom des paramètres reste générique (pas de ...1 ou ...2).
+  // => La méthode ne sait pas qu'elle est utilisée pour tel ou tel combattant,
+  // ni qu'elle est appelée plusieurs fois avec des combattants différents.
+  // Elle se contente de faire son travail quelles que soient les caractéristiques données
+  public static void afficherCaracteristiquesCombattant(String nom, int force, int agilite, int pointsDeVie) {
+    System.out.println("*** CARACTÉRISTIQUES ***");
+    System.out.println("Nom : " + nom);
+    System.out.println("Force : " + force);
+    System.out.println("Agilité : " + agilite);
+    System.out.println("Points de vie : " + pointsDeVie);
+    System.out.println("************************");
+  }
+
+  // Définition de la méthode calculerDommages()
+  // Prend en paramètres la force et l'agilité du combattant attaquant
+  // et l'agilité du combattant défenseur
+  // Renvoie un entier (dommages calculés)
+  public static int calculerDommages(int forceAttaquant, int agiliteAttaquant, int agiliteDefenseur) {
+    Random random = new Random();
+    int dommagesForce = forceAttaquant / 2;
+    int dommagesAgilite = random.nextInt(agiliteAttaquant + 1);
+    int esquive = random.nextInt(agiliteDefenseur + 1);
+    int dommagesTotaux = dommagesForce + dommagesAgilite - esquive;
+    return dommagesTotaux;
+  }
+}
+----
+
+=== 2.7 - Combat complet
+
+Simulez un combat entre deux combattants jusqu'à ce que l'un des deux meurt. Vous définirez pour cela une méthode dédiée qui va elle-même utiliser la méthode définie précédemment. Vous afficherez des détails sur chacun des tours du combat et indiquerez qui a gagné à la fin.
+
+[source,java]
+----
+public class RpgSimulation {
+  public static void main(String[] args) {
+    String nom1 = "Gandalf";
+    int force1 = 10;
+    int agilite1 = 3;
+    int pointsDeVie1 = 100;
+    String nom2 = "Aragorn";
+    int force2 = 8;
+    int agilite2 = 4;
+    int pointsDeVie2 = 110;
+    afficherBienvenue();
+    afficherCaracteristiquesCombattant(nom1, force1, agilite1, pointsDeVie1);
+    afficherCaracteristiquesCombattant(nom2, force2, agilite2, pointsDeVie2);
+    // Combat jusqu'à la mort d'un des combattants
+    // Chaque itération du while correspond à un tour de combat
+    // 1 tour = 1 attaque pour chaque combattant
+    while (pointsDeVie1 > 0 && pointsDeVie2 > 0) {
+      int dommages = calculerDommages(force1, agilite1, agilite2);
+      System.out.println(nom1 + " inflige " + dommages + " points de dommages à " + nom2);
+      pointsDeVie2 = pointsDeVie2 - dommages;
+      // On ne continue ce tour que si le combattant 2 est encore en vie
+      if (pointsDeVie2 > 0) {
+        dommages = calculerDommages(force2, agilite2, agilite1);
+        System.out.println(nom2 + " inflige " + dommages + " points de dommages à " + nom1);
+        pointsDeVie1 = pointsDeVie1 - dommages;
+      }
+    }
+    // Sortie de boucle => l'un des deux est forcément mort
+    if (pointsDeVie1 > 0) {
+      System.out.println(nom1 + " a gagné !");
+    } else {
+      System.out.println(nom2 + " a gagné !");
+    }
+  }
+
+  public static void afficherBienvenue() {
+    System.out.println("Bienvenue !");
+  }
+
+  public static void afficherCaracteristiquesCombattant(String nom, int force, int agilite, int pointsDeVie) {
+    System.out.println("*** CARACTÉRISTIQUES ***");
+    System.out.println("Nom : " + nom);
+    System.out.println("Force : " + force);
+    System.out.println("Agilité : " + agilite);
+    System.out.println("Points de vie : " + pointsDeVie);
+    System.out.println("************************");
+  }
+
+  public static int calculerDommages(int forceAttaquant, int agiliteAttaquant, int agiliteDefenseur) {
+    Random random = new Random();
+    int dommagesForce = forceAttaquant / 2;
+    int dommagesAgilite = random.nextInt(agiliteAttaquant + 1);
+    int esquive = random.nextInt(agiliteDefenseur + 1);
+    int dommagesTotaux = dommagesForce + dommagesAgilite - esquive;
+    return dommagesTotaux;
+  }
+}
+----
+
+Voici une version qui définit et utilise une méthode `faireCombattre` qui modularise la partie combat entre deux combattants :
+
+[source,java]
+----
+public class RpgSimulation {
+  public static void main(String[] args) {
+    String nom1 = "Gandalf";
+    int force1 = 10;
+    int agilite1 = 5;
+    int pointsDeVie1 = 100;
+    String nom2 = "Aragorn";
+    int force2 = 8;
+    int agilite2 = 6;
+    int pointsDeVie2 = 110;
+    afficherBienvenue();
+    afficherCaracteristiquesCombattant(nom1, force1, agilite1, pointsDeVie1);
+    afficherCaracteristiquesCombattant(nom2, force2, agilite2, pointsDeVie2);
+    // Combat jusqu'à la mort d'un des combattants
+    faireCombattre(nom1, force1, agilite1, pointsDeVie1, nom2, force2, agilite2, pointsDeVie2);
+  }
+
+  public static void faireCombattre(String nom1, int force1, int agilite1, int pointsDeVie1, String nom2, int force2, int agilite2, int pointsDeVie2) {
+    // Chaque itération du while correspond à un tour de combat
+    // 1 tour = 1 attaque pour chaque combattant
+    while (pointsDeVie1 > 0 && pointsDeVie2 > 0) {
+      int dommages = calculerDommages(force1, agilite1, agilite2);
+      System.out.println(nom1 + " inflige " + dommages + " points de dommages à " + nom2);
+      pointsDeVie2 = pointsDeVie2 - dommages;
+      // On ne continue ce tour que si le combattant 2 est encore en vie
+      if (pointsDeVie2 > 0) {
+        dommages = calculerDommages(force2, agilite2, agilite1);
+        System.out.println(nom2 + " inflige " + dommages + " points de dommages à " + nom1);
+        pointsDeVie1 = pointsDeVie1 - dommages;
+      }
+    }
+    // Sortie de boucle => l'un des deux est forcément mort
+    if (pointsDeVie1 > 0) {
+      System.out.println(nom1 + " a gagné !");
+    } else {
+      System.out.println(nom2 + " a gagné !");
+    }
+  }
+
+  // ... AUTRES MÉTHODES NON REPRODUITES
+}
+----
+
+On pourrait avoir une méthode qui, au lieu d'afficher le vainqueur, renvoie le nom du vainqueur à l'appelant. Comme toujours, tout dépend du contexte dans lequel on se trouve, de comment se font les affichages, etc. Dans une prochaine évolution, il faudrait aussi prendre en compte un problème de taille dans notre solution actuelle : imaginons que le combattant 1 ressorte vainqueur du combat. On peut imaginer qu'il aurait quand même subi quelques dommages. Mais comme les variables qui représentent les paramètres disparaissent à la fin de la méthode `faireCombattre`, Gandalf ressortirait comme une fleur du combat avec ses 100 points de vie dans `main` qui n'ont pas bougés ! Il faudrait donc trouver un moyen de renvoyer à la fois le vainqueur du combat, mais aussi ses points de vie restants. En l'état, nous n'avons pas les connaissances pour faire cela facilement, car une méthode ne peut renvoyer qu'une seule valeur. La Programmation Orientée Objet (POO) offre une solution à ce problème. La POO est abordée dans le prochain module (SLAM).
+
+=== 2.8 - Bug ?
+
+Le code présenté ne contient pas ce bug : les instructions `if` à l'intérieur du `while` permettent de s'assurer que le premier combattant ne frappe pas le second s'il vient de mourir. Si le `if` est enlevé, les deux combattants peuvent mourir au même tour. Cela peut être un comportement voulu (attaques portées en même temps) : il faut juste que les spécifications du programme soient claires à ce sujet. Pour lever l'ambiguité, dans le « monde réel », si le développeur n'était pas « maître » de ce que doit faire le programme (il se contente d'implémenter des spécifications existantes), cette question serait posée au client ou au chef de projet.
