@@ -17,7 +17,7 @@ La DSI est installée dans les bâtiments du siège social de KLIENTE. Elle est 
 
 - le pôle _Infrastructures et serveurs_ a pour activités principales le paramétrage et la sécurisation des éléments d'interconnexion et des serveurs
 - le pôle _Applications_ est dédié au développement d'applications spécifiques pour les besoins de KLIENTE
-- le pôle _Données à caractère personnel et données sensibles_ a pour mission de veiller à l'identification des risques et au respect de la législation sur les données à caractère personnel (DCP)
+- le pôle _Données à caractère personnel et données sensibles_ a pour mission de veiller à l'identification des risques et au respect de la législation sur les **données à caractère personnel** (DCP)
 
 ### Description du SI de l'organisation
 

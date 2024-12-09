@@ -4,16 +4,16 @@
 
 - **Vulnérabilité** : faille, faiblesse de cybersécurité du SI qui peut affecter son fonctionnement normal. On la note **V**.
 - **Menace** : cause intentionnelle (dans le cadre de la cybersécurité) ou non-intentionnelle (dans le cadre de la sécurité) qui peut entraîner des dommages sur le SI. On la note **M**.
-- **Probabilité d'exploitation** : probabilité de l'exploitation d'une **vulnérabilité** par une **menace**. On la note **P**. **Une probabilité d'exploitation est fonction d'une Vulnérabilité et d'une Meance correspondante** => **P = V x M**.
+- **Probabilité d'exploitation** : probabilité de l'exploitation d'une **vulnérabilité** par une **menace**. On la note **P**. **Une probabilité d'exploitation est fonction d'une vulnérabilité et d'une menace associée** => **P = V x M**.
 - **Impact** : gravité de l'exploitation pour l'organisation. On le note **I**.
 - On peut alors retenir cette définition du risque : **Le risque est l'estimation de la probabilité d'exploitation d'une vulnérabilité par une menace et de son impact** => **Risque = P x I**.
 - En résumé, chaque fois qu'on a une *vulnérabilité*, une *menace* associée et que la concrétisation de cette menace a un *impact* sur l'organisation, on a un *risque*.
 - On va donc :
   - identifier et mesurer les vulnérabilités
   - identifier et mesurer les menaces associées
-  - pour chaque association vulnérabilité/menace, calculer la probabilité que ça arrive effectivement (P=VxM)
+  - pour chaque association vulnérabilité/menace, calculer la probabilité que ça arrive effectivement (P = V x M)
   - maintenant on suppose que ça arrive, et on évalue l'impact I (mesure de la gravité)
-  - finalement, on calcule le risque correspondant (R=PxI=VxMxI)
+  - finalement, on calcule le risque correspondant (R = P x I = V x M x I)
 
 ### La méthode EBIOS
 
