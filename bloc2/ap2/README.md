@@ -22,7 +22,7 @@ Après deux années de réorganisations internes, tant au niveau du personnel qu
 
 ## Documentation technique
 
-Proposition de [Schéma Relationnel](doctech/shema_relationnel.md) possible pour l'implémentation en base de données.
+Proposition de [Schéma Relationnel](doctech/schema_relationnel.md) possible pour l'implémentation en base de données.
 
 ## Rapport de suivi
 
