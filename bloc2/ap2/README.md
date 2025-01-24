@@ -24,6 +24,10 @@ Après deux années de réorganisations internes, tant au niveau du personnel qu
 
 [Ce qui est attendu pour chaque rapport de suivi de projet](rapport/rapport.md)
 
+## Équipes
+
+Vous vous constituerez en équipes de 3 à 4 membres. Chaque équipe choisit un nom et s'inscrit sur le [GitHub Classroom](https://classroom.github.com/a/cXki1BJq) avec ce nom.
+
 ## Notation
 
 La notation prendra en compte :
