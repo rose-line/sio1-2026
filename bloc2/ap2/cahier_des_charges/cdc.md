@@ -41,7 +41,7 @@ La gestion est la suivante :
 
 ### Processus à informatiser
 
-Actuellement, au plus tard le 20 de chaque mois, le service comptable adresse aux visiteurs la fiche d'état de frais pour le mois en cours ([PDF fiche d'état de frais engagés](/cahier_des_charges/fiche_etat_frais.pdf)). L'application devra permettre de produire automatiquement l'équivalent de ces fiches de manière à les mettre à disposition des visiteurs pour la saisie en ligne.
+Actuellement, au plus tard le 20 de chaque mois, le service comptable adresse aux visiteurs la fiche d'état de frais pour le mois en cours ([PDF fiche d'état de frais engagés](fiche_etat_frais.pdf)). L'application devra permettre de produire automatiquement l'équivalent de ces fiches de manière à les mettre à disposition des visiteurs pour la saisie en ligne.
 
 #### Saisie et consultation
 
@@ -78,9 +78,9 @@ La mise en paiement est faite au 20 du mois suivant la saisie par les visiteurs.
 
 L'**état** de la fiche de frais fera l'objet d'un suivi précis qui sera affiché lors de la consultation, selon le cycle suivant :
 
-![état_fiche](/cahier_des_charges/état_fiche_de_frais.png)
+![état_fiche](état_fiche_de_frais.png)
 
-Actuellement, lorsque la fiche de frais arrive dans l'état « Remboursée », une fiche papier de remboursement de frais est éditée par le service comptabilité et remise au visiteur ([PDF fiche de remboursement de frais engagés](/cahier_des_charges/fiche_remboursement_frais.pdf)).
+Actuellement, lorsque la fiche de frais arrive dans l'état « Remboursée », une fiche papier de remboursement de frais est éditée par le service comptabilité et remise au visiteur ([PDF fiche de remboursement de frais engagés](fiche_remboursement_frais.pdf)).
 
 ## Cahier des charges
 
@@ -135,7 +135,7 @@ Les besoins sont exprimés ici à l'aide des cas d'utilisation : le diagramme 
 
 ### Diagramme des cas d'utilisation
 
-![diagramme_ucs](/cahier_des_charges/diagramme_ucs.png)
+![diagramme_ucs](diagramme_ucs.png)
 
 ### Les fiches des cas d'utilisation (_Use Case_, ou _UC_)
 
@@ -292,5 +292,3 @@ On fournira un diagramme entité-association et le schéma relationnel correspon
   - plateformes de gestion de projet agile (méthode Kanban => Trello, Notion...)
   - tout autre outil, en ligne ou non, que vous jugerez productif ; sauf si cela est nécessaire (ex. : votre IDE comme VS Code), **évitez d'utiliser des applications qui ne permettent pas l'édition collaborative** (exemple de mauvaise pratique : travailler chacun sur un bout du rapport et se passer les fichiers en espérant qu'une version qui contient tout dans le bon ordre et sans doublon émerge facilement)
   - NB : tous les outils utilisés seront référencés dans vos rapports
-
-### Dictionnaire de données correspondant à ce cahier des charges
