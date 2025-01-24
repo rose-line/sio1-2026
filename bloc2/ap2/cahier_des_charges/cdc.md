@@ -283,7 +283,7 @@ On fournira un diagramme entité-association et le schéma relationnel correspon
 
 ## Contraintes du projet
 
-- Groupes de 2, 3, ou 4 étudiants
+- Groupes de 3 ou 4 étudiants
 - Travail collaboratif, mais les apports de chacun doivent être clairement distingués et documentés au fur et à mesure de l'avancement
 - Utilisation d'outils numériques facilitant la gestion de projet et le travail collaboratif :
   - obligatoire (rendu sous cette forme) : compte Github (ou autre plateforme Git de dépôt de code) sur lequel seront rendus disponibles vos productions : code, rapports...

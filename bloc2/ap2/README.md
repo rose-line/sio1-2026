@@ -20,6 +20,10 @@ Après deux années de réorganisations internes, tant au niveau du personnel qu
 
 [Aller au cahier des charges](cahier_des_charges/cdc.md)
 
+## Documentation technique
+
+Proposition de [Schéma Relationnel](doctech/shema_relationnel.md) possible pour l'implémentation en base de données.
+
 ## Rapport de suivi
 
 [Ce qui est attendu pour chaque rapport de suivi de projet](rapport/rapport.md)
