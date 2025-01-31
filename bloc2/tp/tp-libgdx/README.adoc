@@ -1,0 +1,68 @@
+:last-update-label!:
+
+= Programmation Orientée Objet - Projet libGDX
+
+== Projet de base
+
+* https://classroom.github.com/a/NA9UAqwE[Lien d'invitation] pour le projet de base libGDX
+* Comme d'habitude, clonez le dépôt créé pour y travailler localement
+* Vous ferez vos _commits_ sur ce dépôt local et pousserez régulièrement sur GitHub
+* Ce projet a été généré à partir de https://libgdx.com/wiki/start/project-generation[gdx-liftoff]
+
+== libGDX
+
+libGDX est un framework open-source puissant et polyvalent pour le développement de jeux. Conçu en Java, il permet de créer des applications pour une multitude de plateformes (Windows, macOS, Linux, Android, iOS, HTML5). Il permet un développement rapide grâce à une base de code unifiée, offre une richesse des fonctions pour des jeux modernes, et une communauté active de développeurs pour obtenir de l'aide et des conseils. libGDX est utilisé par de nombreux développeurs de jeux, en particulier pour les projets indépendants et les jeux multi-plateformes.
+
+== Premier lancement
+
+* Le projet et ses dépendances est géré par https://gradle.org/[Gradle] et non Maven
+  * vous pouvez installer l'extension _Gradle for Java_ pour mieux pouvoir gérer ces types de projet
+* Un projet Gradle n'a pas la même structure de projet que Maven
+  * mais on peut toujours lancer le programme en tapant F5 avec la classe de jeu ouverte
+  * la classe de jeu se trouve dans un sous-répertoire créé dans `core\src\main\java\`
+* Ce projet de base se contente d'afficher le logo de libGDX dans la fenêtre de jeu
+
+== Objectifs initiaux
+
+* On va créer une version du jeu https://www.youtube.com/watch?v=E37atoiDsXE[_Wanted_] en utilisant un *développement incrémental* :
+  * on partira d'une version extrêmement basique
+  * et en ajoutant, version après version, des fonctionnalités
+
+== Objectifs à moyen terme
+
+* Intégrer les principes de Programmation Orientée Objet à ce développement
+* Éviter de se faire choper par Nintendo pour contefaçon et reprise d'éléments graphiques propriétaires
+
+== Proposition de développement incrémental
+
+Voici un début de « plan » qu'on peut suivre pour le développement. Notez comment chaque version ajoute un élément du jeu à chaque fois,
+
+== Version 0.0.1
+
+* Affichage de Mario sur l'écran
+* On clique dessus, Mario disparaît
+* « GAGNÉ ! » s'affiche à la place
+
+== Version 0.0.2
+
+* Affichage des 4 personnages sur l'écran, de manière aléatoire
+** libGDX fournit la méthode `MathUtils.random(int borneInf, int borneSup)`
+* Clic sur Mario => « GAGNÉ ! »
+* Clic sur un autre personnage => « PERDU ! »
+
+== Version 0.0.3
+
+* Le jeu reprend à zéro après qu'on ait gagné (indéfiniment)
+
+== Version 0.0.4
+
+* Le score s'affiche en haut à droite de l'écran
+** affiche « +5 » pour chaque clic sur un Mario et met à jour le score
+** affiche « -5 » pour chaque clic sur un autre perso et met à jour le score
+
+== Version 0.0.5
+
+* Le score est maintenant un _timer_ en secondes
+** démarre à 10 secondes
+* La partie s'achève (« PERDU ! ») lorsque le compteur atteint 0
+* Chaque clic sur un perso met à jour le compteur, en +5 ou -5 comme version précédente
