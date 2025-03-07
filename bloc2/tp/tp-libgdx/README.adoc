@@ -119,6 +119,14 @@ Timer.schedule(new Task() {
 ** tous les sprites disparaissent
 ** « PERDU ! » s'affiche au centre de l'écran
 
+.Indices ?
+[%collapsible]
+====
+* On pourra utiliser une nouvelle variable indiquant que la partie est terminée ou non
+* Si terminée, le seul affichage est un « PERDU ! »
+** => on pourra forcer la sortie de la méthode en utilisant l'instruction `return;` et ainsi ignorer tous les autres affichages
+====
+
 === Version 0.0.8
 
 * Le score est maintenant un _timer_ en secondes (utiliser un `Timer`)
@@ -126,6 +134,14 @@ Timer.schedule(new Task() {
 ** 0 minimum
 ** 50 maximum
 * La partie s'achève (« PERDU ! ») lorsque le compteur atteint 0
+
+.Indices ?
+[%collapsible]
+====
+* Pour gérer le temps, on aura un `Timer` global qui va décrémenter le temps toutes les secondes
+* Il faudra alors utiliser une version de `scheduleTask` qui prend un paramètre supplémentaire : le temps entre chaque exécution (ici 1 seconde)
+* Il faut penser à stopper ce timer lors de la pause de 2 secondes pour affichage du résultat (`timer.stop()`) et le relancer après (`timer.start()`)
+====
 
 === Version 0.0.9
 
@@ -135,6 +151,8 @@ Timer.schedule(new Task() {
 ** à gauche : niveau atteint
 ** au centre : personnage recherché (pour l'instant, toujours Mario) ; deux fois plus gros que les persos du jeu
 ** à droite : temps restant
+
+image::v0.0.9.png[]
 
 === Version 0.0.9b
 
