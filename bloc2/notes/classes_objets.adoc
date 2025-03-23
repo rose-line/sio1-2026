@@ -1,0 +1,195 @@
+## Classes et objets
+
+### Définition d'une classe
+
+[source,java]
+----
+// Définition de la classe Produit dans le fichier Produit.java
+public class Produit {
+  // Variables d'instance
+  // private => variable n'est accessible que dans la classe
+  // => ENCAPSULATION
+  private String reference;
+  private String nom;
+  private int prix;
+
+  // Constructeur
+  public Produit(String reference, String nom, int prix) {
+    this.reference = reference;
+    this.nom = nom;
+    this.prix = prix;
+  }
+
+  // GETTERS et SETTERS permettent d'accéder
+  // aux variables d'instance que l'on souhaite exposer
+  // En LECTURE (GETTERS) et/ou en ECRITURE (SETTERS)
+
+  // Getter pour le nom
+  public String getNom() {
+    return nom;
+  }
+
+  // Getter pour le prix
+  public int getPrix() {
+    return prix;
+  }
+
+  // Setter pour le prix
+  public void setPrix(int nouveauPrix) {
+    prix = nouveauPrix;
+  }
+}
+----
+
+### Déclaration et instanciation d'un objet d'une classe
+
+[source,java]
+----
+// Dans la classe App
+// Méthode dite "cliente" de la classe Produit car elle utilise Produit
+public void main(String[] args) {
+  // Déclaration et instanciation
+  // new appelle le constructeur de la classe
+  Produit produit1 = new Produit("REF001", "Pomme", 150);
+  Produit produit2 = new Produit("REF002", "Banane", 120);
+
+  // Accès aux caractéristiques des objets grâce aux getters
+  System.out.println("Nom du produit 1 : " + produit1.getNom());
+  System.out.println("Prix du produit 2 : " + produit2.getPrix());
+
+  // Modification d'un prix grâce au setter
+  produit1.setPrix(200);
+}
+----
+
+## Listes d'objets
+
+### Définition et initialisation
+
+[source,java]
+----
+import java.util.ArrayList;
+
+public void main(String[] args) {
+  ArrayList<Produit> listeProduits = new ArrayList<>();
+
+  // La liste est ici vide mais prête à accueillir des éléments
+}
+----
+
+### Ajout/suppression d'éléments
+
+[source,java]
+----
+// Création de 5 produits aléatoires et ajout dans la liste
+for (int i = 0; i < 5; i++) {
+  Produit produit = new Produit("REF" + i, "Produit " + i, 100 + i * 10);
+  // Appel de la méthode add pour ajouter un élément à la liste
+  listeProduits.add(produit);
+}
+----
+
+### Parcours de liste
+
+[source,java]
+----
+// Parcours de la liste -  Syntaxe d'un "foreach" en Java
+// Pour chaque Produit p dans la listeProduits
+for (Produit p : listeProduits) {
+  System.out.println(p.getNom() + " - " + p.getPrix() + " €");
+}
+----
+
+[source]
+----
+SORTIE :
+
+Produit 0 - 100 €
+Produit 1 - 110 €
+Produit 2 - 120 €
+Produit 3 - 130 €
+Produit 4 - 140 €
+----
+
+### Calcul dépendant de chaque élément
+
+[source,java]
+----
+// Dans la classe App
+// Méthode calculant la somme des prix des produits
+public int calculerSommePrix(ArrayList<Produit> liste) {
+  int somme = 0;
+  for (Produit produit : liste) {
+    somme = somme + produit.getPrix();
+  }
+  return somme;
+}
+
+public void main(String[] args) {
+  // Code précédent non reproduit
+  // ...
+
+  // Appel de la méthode calculerSommePrix
+  int sommePrix = calculerSommePrix(listeProduits);
+  System.out.println("Somme des prix : " + sommePrix + " €"); // Somme des prix : 570 €
+}
+----
+
+### Recherche d'un élément
+
+[source,java]
+----
+// Méthode recherchant un produit par nom
+public Produit chercherProduit(ArrayList<Produit> liste, String nomCible) {
+  for (Produit p : liste) {
+    // On sort de la méthode dès qu'on a trouvé le produit
+    if (p.getNom().equals(nomCible)) {
+      return p;  // produit trouvé
+    }
+  }
+  // Aucun produit correspondant trouvé
+  return null;
+}
+
+// Dans main
+Produit produitTrouve = chercherProduit(listeProduits, "Produit 2");
+if (produitTrouve != null) {
+  System.out.println("Prix du produit trouvé : " + produitTrouve.getPrix());
+}
+----
+
+### Recherche d'une liste d'éléments
+
+[source,java]
+----
+// Méthode recherchant les produits dont le prix est inférieur à un certain montant
+public ArrayList<Produit> chercherProduitsEconomiques(ArrayList<Produit> liste, int prixMax) {
+  ArrayList<Produit> produitsEconomiques = new ArrayList<>();
+  for (Produit p : liste) {
+    if (p.getPrix() <= prixMax) {
+      produitsEconomiques.add(p);
+    }
+  }
+  // La liste résultante ne contient que les produits
+  // dont le prix est inférieur ou égal au prixMax
+  return produitsEconomiques;
+}
+
+// Dans main
+ArrayList<Produit> produitsEconomiques = chercherProduitsEconomiques(listeProduits, 120);
+// Affichage des produits économiques
+System.out.println("Liste des produits économiques (max 120 €) : ");
+for (Produit p : produitsEconomiques) {
+  System.out.println(p.getNom() + " - " + p.getPrix() + " €");
+}
+----
+
+[source]
+----
+SORTIE :
+
+Liste des produits économiques (max 120 €) :
+Produit 0 - 100 €
+Produit 1 - 110 €
+Produit 2 - 120 €
+----
